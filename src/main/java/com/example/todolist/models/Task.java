@@ -24,7 +24,6 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "task_userId", nullable = false)
-    @Column(name = "task_user")
     private User user;
 
     @Column(name = "task_isCompleted")

@@ -32,7 +32,6 @@ public class User {
     private String lastName;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Column(name = "user_tasks")
     private ArrayList<Task> tasks = new ArrayList<>();  
 
     public Long getId() {
