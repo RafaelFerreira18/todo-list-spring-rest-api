@@ -6,11 +6,22 @@ import org.springframework.stereotype.Service;
 
 import com.example.todolist.models.Task;
 import com.example.todolist.repositories.TaskRepository;
+import com.example.todolist.repositories.UserRepository;
 
 @Service
 public class TaskService {
     private TaskRepository taskRepository;
+    private UserRepository userRepository;
     
+    public Iterable<Task> searchAllInUser(String email){
+        if(userRepository.existsByEmail(email)){
+            return taskRepository.findByUserEmail(email);
+        }
+        else{
+            throw new IllegalArgumentException("User doesn't have any tasks");
+        }
+    }
+
     public Task searchById(Long id) {
 		Optional<Task> task = taskRepository.findById(id);
 		return task.get();
