@@ -1,5 +1,7 @@
 package com.example.todolist.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +26,7 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "task_userId", nullable = false)
+    @JsonIgnore
     private User user;
 
     @Column(name = "task_isCompleted")

@@ -9,6 +9,7 @@ import com.example.todolist.services.TaskService;
 import com.example.todolist.services.UserService;
 import java.net.URI;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RestController
 @RequestMapping("tasks")
 public class TaskController {
+    @Autowired
     TaskService taskService;
+    @Autowired
     UserService userService;
 
     public TaskController(TaskService taskService, UserService userService) {
@@ -29,8 +32,8 @@ public class TaskController {
         this.userService = userService;
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<Iterable<Task>> searchAllInUser (@PathVariable String email) {
+    @GetMapping("/user/{email}")
+    public ResponseEntity<Iterable<Task>> searchAllInUser(@PathVariable String email) {
         return ResponseEntity.ok(taskService.searchAllInUser(email));
     }
 
@@ -48,7 +51,7 @@ public class TaskController {
             return ResponseEntity.created(location).body(taskCreated);    
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return null;
+            return ResponseEntity.badRequest().build();
         }
     }
 

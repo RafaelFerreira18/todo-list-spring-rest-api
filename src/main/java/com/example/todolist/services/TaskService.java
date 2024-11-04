@@ -1,5 +1,6 @@
 package com.example.todolist.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,8 @@ public class TaskService {
     private UserRepository userRepository;
 
     
-    public Iterable<Task> searchAllInUser(String email){
-        if(userRepository.existsByEmail(email)){
-            return taskRepository.findByUserEmail(email);
-        }
-        else{
-            throw new IllegalArgumentException("User doesn't have any tasks");
-        }
+    public List<Task> searchAllInUser(String email) {
+        return taskRepository.findByUserEmail(email);
     }
 
     public Task searchById(Long id) {
