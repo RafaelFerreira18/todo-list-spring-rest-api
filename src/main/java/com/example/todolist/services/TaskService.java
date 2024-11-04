@@ -2,6 +2,7 @@ package com.example.todolist.services;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.todolist.models.Task;
@@ -10,8 +11,11 @@ import com.example.todolist.repositories.UserRepository;
 
 @Service
 public class TaskService {
+    @Autowired
     private TaskRepository taskRepository;
+    @Autowired
     private UserRepository userRepository;
+
     
     public Iterable<Task> searchAllInUser(String email){
         if(userRepository.existsByEmail(email)){
