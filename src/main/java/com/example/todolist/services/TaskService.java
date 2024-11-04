@@ -8,16 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.example.todolist.models.Task;
 import com.example.todolist.repositories.TaskRepository;
-import com.example.todolist.repositories.UserRepository;
 
 @Service
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
-    @Autowired
-    private UserRepository userRepository;
 
-    
     public List<Task> searchAllInUser(String email) {
         return taskRepository.findByUserEmail(email);
     }
