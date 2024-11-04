@@ -1,6 +1,7 @@
 package com.example.todolist.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -25,14 +26,11 @@ public class User {
     @Column(name = "user_password")
     private String password;
 
-    @Column(name = "user_first_name")
-    private String firstName;
-
-    @Column(name = "user_last_name")
-    private String lastName;
+    @Column(name = "user_name")
+    private String name;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Task> tasks = new ArrayList<>();  
+    private List<Task> tasks = new ArrayList<Task>();  
 
     public Long getId() {
         return id;
@@ -59,22 +57,14 @@ public class User {
     }
 
     public String getFirstName() {
-        return firstName;
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public ArrayList<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
