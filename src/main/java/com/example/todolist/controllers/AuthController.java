@@ -28,6 +28,7 @@ public class AuthController {
     @Autowired
     private TokenService tokenService;
 
+    @SuppressWarnings("rawtypes")
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginRequestDTO body) {
         User user = this.userRepository.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("User not found"));
@@ -38,6 +39,7 @@ public class AuthController {
         return ResponseEntity.badRequest().build();
     }
 
+    @SuppressWarnings("rawtypes")
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody RegisterRequestDTO body) {
         Optional<User> user = this.userRepository.findByEmail(body.email());
